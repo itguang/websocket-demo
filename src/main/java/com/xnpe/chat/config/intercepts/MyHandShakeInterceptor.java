@@ -26,7 +26,7 @@ public class MyHandShakeInterceptor implements HandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler
             , Map<String, Object> attributes) throws Exception {
-
+                // TODO 在此方法校验是否可以建立 WebSocket 连接
         return true;
     }
 
