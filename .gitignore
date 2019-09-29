@@ -1,5 +1,6 @@
 # Compiled class file
 *.class
+*.iml
 
 # Log file
 *.log
@@ -18,6 +19,21 @@
 *.zip
 *.tar.gz
 *.rar
+.idea
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.gitignore
+.idea/.name
+.idea/artifacts/
+.idea/checkstyle-idea.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+chat.iml
+
