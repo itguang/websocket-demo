@@ -38,7 +38,8 @@ public class GreetingController {
         httpSession.setAttribute("hello", "到底有没得???????");
         httpSession.setAttribute("clinicId", 666);
 
-        template.convertAndSend("/topic/greetings", new Greeting("Hello, " + HtmlUtils.htmlEscape(word) + "!"));
+        // TODO 发送给订阅了 /topic/workbench/{clinicId}}/{Role} 地址的客户端
+        template.convertAndSend("/topic/workbench/999/888", new Greeting("Hello, " + HtmlUtils.htmlEscape(word) + "!"));
     }
 
 }
