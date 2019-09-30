@@ -31,14 +31,14 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         // 配置消息代理,启动简单Broker，消息的发送的地址符合配置的前缀来的消息才发送到这个broker
-        registry.enableSimpleBroker("/queue", "/topic");
+        registry.enableSimpleBroker("/queue", "/topic","/his/workbench/{clinicId}/{Role}");
         registry.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
         //添加STOMP协议的端点。这个HTTP URL是供WebSocket或SockJS客户端访问的地址
-        stompEndpointRegistry.addEndpoint("/Chat", "/gs-guide-websocket")
+        stompEndpointRegistry.addEndpoint("/Chat", "/ws")
 //                .setHandshakeHandler()
                 // HTTP 建立 webSocket请求时,把 HTTPSession中的值拷贝到 WebSocket中
                 .addInterceptors(new HttpSessionHandshakeInterceptor())

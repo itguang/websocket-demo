@@ -13,7 +13,7 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/gs-guide-websocket');
+    var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
@@ -22,8 +22,8 @@ function connect() {
             showGreeting(JSON.parse(greeting.body).content);
         });
 
-        stompClient.subscribe('/topic/desk', function (data) {
-            console.log("subscribe:/topic/desk")
+        stompClient.subscribe('/his/workbench/999/888', function (data) {
+            console.log(JSON.parse(data))
         });
     });
 }
