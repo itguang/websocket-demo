@@ -7,6 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import java.security.Principal;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class GreetingController extends WSController {
 
     @Autowired
     private SimpMessagingTemplate template;
@@ -26,6 +27,15 @@ public class GreetingController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Greeting greeting(HelloMessage message, Principal principal, SimpMessageHeaderAccessor headerAccessor) throws Exception {
+        String principalName = principal.getName();
+        // 在此可以获取 HTTP Session 放入的信息 @see
+        Map<String, Object> sessionAttributes = headerAccessor.getSessionAttributes();
+        return new Greeting(principalName + ":" + HtmlUtils.htmlEscape(message.getMessage()));
+    }
+
+    @MessageMapping("/helloToUser")
+    @SendToUser("/topic/greetings") //  返回给自己
+    public Greeting greetingToUser(HelloMessage message, Principal principal, SimpMessageHeaderAccessor headerAccessor) throws Exception {
         String principalName = principal.getName();
         // 在此可以获取 HTTP Session 放入的信息 @see
         Map<String, Object> sessionAttributes = headerAccessor.getSessionAttributes();

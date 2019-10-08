@@ -41,12 +41,13 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
         stompEndpointRegistry.addEndpoint("/Chat", "/ws")
 //                .setHandshakeHandler()
                 // HTTP 建立 webSocket请求时,把 HTTPSession中的值拷贝到 WebSocket中
+                // 我们可以通过请求信息，比如token、或者session判用户是否可以连接，这样就能够防范非法用户
                 .addInterceptors(new HttpSessionHandshakeInterceptor())
                 // 拦截websocket的握手请求,这个拦截器用来管理握手和握手后的事情，我们可以通过请求信息，比如token、或者session判用户是否可以连接，这样就能够防范非法用户
                 // OriginHandshakeInterceptor：检查Origin头字段的合法性
                 .addInterceptors(myHandShakeInterceptor)
                 // 跨域设置
-                .setAllowedOrigins("*")
+                .setAllowedOrigins("*","https://clinic.aihaisi.com")
                 // 指定端点使用SockJS协议
                 .withSockJS();
 

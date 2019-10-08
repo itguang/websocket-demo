@@ -26,14 +26,15 @@ public class MyHandShakeInterceptor implements HandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler
             , Map<String, Object> attributes) throws Exception {
-                // TODO 在此方法校验是否可以建立 WebSocket 连接
+        // http协议转换websoket协议进行前，可以在这里通过session信息判断用户登录是否合法
+        // TODO 在此方法校验是否可以建立 WebSocket 连接
         return true;
     }
 
     @Override
     public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
                                Exception exception) {
-
+        //握手成功后
     }
 
     private HttpSession getSession(ServerHttpRequest request) {
